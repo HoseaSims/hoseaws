@@ -2,7 +2,7 @@
   <div>
     <head>
       <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
       <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Unbounded&display=swap" rel="stylesheet">
     </head>
     <nav>
@@ -10,6 +10,7 @@
       <router-link to="/">Projects</router-link> 
       <router-link to="/about">About</router-link>
       <router-link to="/contact">contact</router-link>
+
     </nav>
     <router-view/>
   </div>
@@ -33,6 +34,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    width: 100%;
   }
   nav a{
   text-decoration: none;
