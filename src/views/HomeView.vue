@@ -1,31 +1,79 @@
+
+
 <template>
   <div class="home">
     <div id="top-img">
       <img src="../assets/frame.png" alt="">
     </div>
     <div id="main-container">
-
       <p>Featured Projects</p>
-    <div id="featured-container">
-      <div class="featured-card">
-        <img src="../assets/frame.png" alt="">
-        <div class="featured-card-text">
-          <h4>This is the title</h4>
-          <p>UX</p>
+      <div id="featured-container">
+        <div class="featured-card">
+          <img src="{{ test }}" alt="">
+          <div class="featured-card-text">
+            <h4> {{ questlogTitle }}</h4>
+            <p>{{ uxSub }}</p>
+          </div>
         </div>
       </div>
+      <div id="about-sample">
+        <p>about</p>
+        <img src="../assets/sampleimg.png" alt="">
+      </div>
     </div>
-    <div id="about-sample">
-      <p>about</p>
-      <img src="../assets/sampleimg.png" alt="">
+
+    <div :index="activeItem">
+      <div v-for="(item, index) in items" :key="index">
+        <div>
+          <img :src="test" alt="">
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.subtitle }}</p>
+          <p></p>
+        </div>
+       
+      </div>
     </div>
-    </div>
+  <div>
+    <button @click="prevItem">prev</button>
+    <button @click="nextItem">next</button>
+  </div>
+
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 
+export default{
+  data(){
+    return{
+      test: '../assets/QuestLogImg.png',
+      questlogTitle: 'Quest Log',
+      uxSub: 'UX',
+      webDev: 'Web Development',
+
+      items: [
+        {src: "../assets/logo.png", title: 'This is a title :)', subtitle: 'this is a subtitle'},
+        {otherTitle: 'WOO WOO WOO WOO'}
+      ],
+      activeItem: 0,
+    }
+  },
+  methods: {
+    prevItem(){
+      this.activeItem = Math.max(this.activeItem -1,0)
+      console.log('click prevItem');
+      console.log(this.activeItem);
+    },
+    nextItem(){
+      this.activeItem = Math.min(this.activeItem + 1, this.items.length - 1)
+      console.log('clicked nextItem');
+      console.log(this.items[0]);
+      console.log(this.activeItem);
+
+    }
+  }
+}
 </script>
 
 <style>
