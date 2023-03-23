@@ -25,7 +25,7 @@
     <div :index="activeItem">
       <div v-for="(item, index) in items" :key="index">
         <div>
-          <img :src="test" alt="">
+          <img :src= this.test alt="">
           <h3>{{ item.title }}</h3>
           <p>{{ item.subtitle }}</p>
           <p></p>

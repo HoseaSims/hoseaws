@@ -1,16 +1,10 @@
 <template>
-  <div>
-    <head>
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
-      <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Unbounded&display=swap" rel="stylesheet">
-    </head>
+  <div id="app-container">
     <nav>
-      <img id="logo-img" src="./assets/logo.png" alt="">
-      <router-link to="/">Projects</router-link> 
+      <router-link to="/"><img id="logo-img" src="./assets/logo.png" alt=""></router-link>
       <router-link to="/about">About</router-link>
-      <router-link to="/contact">contact</router-link>
-
+      <router-link to="/contact">Contact</router-link>
+      <router-link to="/projects">Projects</router-link>
     </nav>
     <router-view/>
   </div>
@@ -18,15 +12,23 @@
 
 <style>
 @media only screen and (max-width: 910px)  {
-  
+  html{
+    overflow-x: hidden;
+    max-width: 100%;
+  }
   body{
+    max-width: 100%;
     color: white;
     height: 100vh;
     margin: 0;
     padding: 0;
     background-color: #283D58;
     font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
     /* font-family: 'Unbounded', cursive; */
+  }
+  #app-container{
+
   }
   nav{
     text-align: center;
@@ -34,7 +36,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 100%;
+    /* width: 100%; */
   }
   nav a{
   text-decoration: none;
