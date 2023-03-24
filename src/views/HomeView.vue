@@ -10,8 +10,7 @@
       <div id="featured-container">
         <div class="featured-card" v-for="(item, index) in items" :key="index">
          <div>
-            <img v-if="carouselCounter === 0" :src= item.imgOne alt="">
-            <img v-else-if="carouselCounter === 1" :src= item.imgTwo alt="">
+            <img :src= item.img alt="">
             <div class="featured-card-text">
               <h3>{{ item.title }}</h3>
               <p>{{ item.subtitle }}</p>
@@ -20,10 +19,6 @@
          </div>
          
         </div>
-      </div>
-      <div>
-        <button @click="prevItem">prev</button>
-        <button @click="nextItem">next</button>
       </div>
       <div id="about-sample">
         <p>about</p>
@@ -46,28 +41,14 @@ export default{
       carouselCounter: 0,
 
       items: [
-        {imgOne: questLog,imgTwo: syncUp,title: 'Quest Log', subtitle: 'UX'},
-     
+        {img: questLog, title: 'Quest Log', subtitle: 'UX'},
+        {img: syncUp, title: 'Sync Up', subtitle: 'UX'}
       ],
       
     }
   },
   methods: {
-    prevItem(){
-      this.carouselCounter--
-      if(this.carouselCounter < 0){
-        this.carouselCounter = 1
-      }
-      console.log(this.carouselCounter);
-    },
-    nextItem(){
-      this.carouselCounter++
-      if(this.carouselCounter > 1){
-        this.carouselCounter = 0
-      }
-      console.log(this.carouselCounter);
 
-    }
   }
 }
 </script>
@@ -91,7 +72,17 @@ export default{
     }
     #featured-container{
       width: 400px;
-      box-shadow:black 2px 8px 12px;
+      display: flex;
+      width: 100%;
+      overflow-x: scroll;
+      white-space: nowrap;
+      
+      scroll-snap-type: x always;
+      scroll-snap-align: start;
+    }
+    .featured-card{
+      margin-right: 16px;
+      scroll-snap-stop: always;
   }
   .featured-card img{
     width: 400px;
