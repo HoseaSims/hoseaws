@@ -8,68 +8,64 @@
     <div id="main-container">
       <p>Featured Projects</p>
       <div id="featured-container">
-        <div class="featured-card">
-          <img src="{{ test }}" alt="">
-          <div class="featured-card-text">
-            <h4> {{ questlogTitle }}</h4>
-            <p>{{ uxSub }}</p>
-          </div>
+        <div class="featured-card" v-for="(item, index) in items" :key="index">
+         <div>
+            <img v-if="carouselCounter === 0" :src= item.imgOne alt="">
+            <img v-else-if="carouselCounter === 1" :src= item.imgTwo alt="">
+            <div class="featured-card-text">
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.subtitle }}</p>
+            </div>
+           
+         </div>
+         
         </div>
+      </div>
+      <div>
+        <button @click="prevItem">prev</button>
+        <button @click="nextItem">next</button>
       </div>
       <div id="about-sample">
         <p>about</p>
         <img src="../assets/sampleimg.png" alt="">
       </div>
     </div>
-
-    <div :index="activeItem">
-      <div v-for="(item, index) in items" :key="index">
-        <div>
-          <img :src= this.test alt="">
-          <h3>{{ item.title }}</h3>
-          <p>{{ item.subtitle }}</p>
-          <p></p>
-        </div>
-       
-      </div>
-    </div>
-  <div>
-    <button @click="prevItem">prev</button>
-    <button @click="nextItem">next</button>
-  </div>
-
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-
+import questLog from '../assets/QuestLogImg.png'
+import syncUp from '../assets/SyncUp.png'
 export default{
   data(){
     return{
-      test: '../assets/QuestLogImg.png',
       questlogTitle: 'Quest Log',
       uxSub: 'UX',
       webDev: 'Web Development',
+      carouselCounter: 0,
 
       items: [
-        {src: "../assets/logo.png", title: 'This is a title :)', subtitle: 'this is a subtitle'},
-        {otherTitle: 'WOO WOO WOO WOO'}
+        {imgOne: questLog,imgTwo: syncUp,title: 'Quest Log', subtitle: 'UX'},
+     
       ],
-      activeItem: 0,
+      
     }
   },
   methods: {
     prevItem(){
-      this.activeItem = Math.max(this.activeItem -1,0)
-      console.log('click prevItem');
-      console.log(this.activeItem);
+      this.carouselCounter--
+      if(this.carouselCounter < 0){
+        this.carouselCounter = 1
+      }
+      console.log(this.carouselCounter);
     },
     nextItem(){
-      this.activeItem = Math.min(this.activeItem + 1, this.items.length - 1)
-      console.log('clicked nextItem');
-      console.log(this.items[0]);
-      console.log(this.activeItem);
+      this.carouselCounter++
+      if(this.carouselCounter > 1){
+        this.carouselCounter = 0
+      }
+      console.log(this.carouselCounter);
 
     }
   }
@@ -104,7 +100,7 @@ export default{
     background: rgb(33,51,71);
     background: linear-gradient(0deg, rgba(33,51,71,1) 20%, rgba(13,21,29,1) 78%);
   }
-  .featured-card-text h4{
+  .featured-card-text h3{
     font-size: 24px;
     margin: 0;
     padding: 8px 0 0 8px;
